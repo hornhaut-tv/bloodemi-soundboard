@@ -6,21 +6,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<title>Bloodemi's Soundboard</title>
 		
-		<!-- Style Sheets -->		<link rel="icon" href="/favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-		<!-- Style Sheets -->		<link rel="stylesheet" type="text/css" href="style/style.css" />
-
-
-		<!-- jQuery HTML Tooltip -->
-		<script type='text/javascript'>
-			  $(function () {
-				  $(document).tooltip({
-					  track: true,
-					  content: function () {
-						  return $(this).prop('title');
-					  }
-				  });
-			  });
-		</script>
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="style/style.css" />
 		
 		<script type="text/javascript">
 			function playAudio(songNo) {
@@ -43,9 +30,14 @@
 	<body>
 		<div class="site">
 			<img src="images/logo.png">
-		<div class="home">
-			<a href="http://bloodemi.net/"> <p>Zurück zur Startseite</p> </a>
-		</div>
+			<div class="home">
+	                
+	            <!-- Twitch Login Button -->
+	            <a id="twitch-connect" href="https://id.twitch.tv/oauth2/authorize?client_id=1cq3tqmw523zn03v0egw7se8att5vm&redirect_uri=https%3A%2F%2Fsounds.bloodemi.net%2F&response_type=token&scope=user_read+chat:read+chat:edit"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
+	            <!-- Twitch Login Button (End) -->
+
+				<a href="http://bloodemi.net/"> <p>Zurück zur Startseite</p> </a>
+			</div>
 		</div>
 		<div class="site">
 				<?php
@@ -62,10 +54,10 @@
 										echo "<div class=\"soundItem\">
 												<table cellspacing=\"0\" cellpadding=\"0\" width=\"0\">
 													<tr>
-														<td><p title=\"Anh&ouml;ren\" style=\"cursor: pointer; font-size: 20px; padding-right: 10px;\" onclick=\"playAudio('". $fileArr[0] .".". $fileArr[1] ."')\">&#9654;</p></td>
+														<td><p style=\"cursor: pointer; font-size: 20px; padding-right: 10px;\" onclick=\"playAudio('". $fileArr[0] .".". $fileArr[1] ."')\">&#9654;</p></td>
 														<td>
 															<input type=\"hidden\" value=\"!". $fileArr[0] ."\" id=\"". $i ."\">
-															<p style=\"cursor: pointer;\" onclick=\"copyToClipboard('". $i ."')\">!". $fileArr[0] ."</p>
+															<p class=\"command\">!". $fileArr[0] ."</p>
 														</td>
 													</tr>
 												</table>
@@ -78,10 +70,14 @@
 					 echo "<audio id=\"player\">
 							<source id=\"sourceMp3\" src=\"\" type=\"audio/mp3\">
 						</audio>"; ?>
-		<div class="home">
-			<a href="http://bloodemi.net/"> <p>Zurück zur Startseite</p> </a>
-		</div>				
+			<div class="home">
+				<a href="http://bloodemi.net/"> <p>Zurück zur Startseite</p> </a>
+			</div>				
 		</div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="//unpkg.com/twitch-js@>2.0.0-beta/dist/twitch-js.min.js"></script>
+        <script src="js/soundboard-chat-integration.js"></script>
 		
 	</body>
 </html>
