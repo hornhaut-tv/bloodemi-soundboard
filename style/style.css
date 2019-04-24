@@ -86,9 +86,12 @@ hr {
     color: #aaa;
 }
 
+.soundItem .button-chat {
+    display: none;
+}
+
 .button-chat {
     color: blue;
-    display: none;
 }
 
 #twitch-connect {
