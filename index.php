@@ -6,7 +6,9 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<title>Bloodemi's Soundboard</title>
 		
-		<link rel="icon" href="/favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="style/style.css" />
 		
 		<script type="text/javascript">
@@ -30,12 +32,14 @@
 	<body>
 		<div class="site">
 			<img src="images/logo.png">
-			<div class="home">
-	                
-	            <!-- Twitch Login Button -->
-	            <a id="twitch-connect" href="https://id.twitch.tv/oauth2/authorize?client_id=1cq3tqmw523zn03v0egw7se8att5vm&redirect_uri=https%3A%2F%2Fsounds.bloodemi.net%2F&response_type=token&scope=user_read+chat:read+chat:edit"><img src="http://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
-	            <!-- Twitch Login Button (End) -->
 
+			<!-- Twitch Login Button -->
+			<div id="twitch-connect">
+	        	<a href="https://id.twitch.tv/oauth2/authorize?client_id=1cq3tqmw523zn03v0egw7se8att5vm&redirect_uri=https%3A%2F%2Fsounds.bloodemi.net%2F&response_type=token&scope=user_read+chat:read+chat:edit"><img src="https://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
+	        </div>
+	        <!-- Twitch Login Button (End) -->
+
+			<div class="home">
 				<a href="http://bloodemi.net/"> <p>Zurück zur Startseite</p> </a>
 			</div>
 		</div>
@@ -53,11 +57,19 @@
 										$fileArr = explode(".", $file);
 										echo "<div class=\"soundItem\">
 												<table cellspacing=\"0\" cellpadding=\"0\" width=\"0\">
-													<tr>
-														<td><p style=\"cursor: pointer; font-size: 20px; padding-right: 10px;\" onclick=\"playAudio('". $fileArr[0] .".". $fileArr[1] ."')\">&#9654;</p></td>
+													<tr data-command=\"!" . $fileArr[0] . "\">
 														<td>
-															<input type=\"hidden\" value=\"!". $fileArr[0] ."\" id=\"". $i ."\">
+															<p class=\"button-play\" onclick=\"playAudio('". $fileArr[0] .".". $fileArr[1] ."')\">
+																<i class=\"fas fa-play\"></i>
+															</p>
+														</td>
+														<td width=\"90%\">
 															<p class=\"command\">!". $fileArr[0] ."</p>
+														</td>
+														<td>
+															<p class=\"button-chat\">
+																<i class=\"fas fa-comment-dots\"></i>
+															</p>
 														</td>
 													</tr>
 												</table>

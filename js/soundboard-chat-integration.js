@@ -1,4 +1,6 @@
 $(function() {
+
+    // HORNHAUT.tv advertising
     console.log(`                  
                            .;@@      ;;,'                          
                     @@@@@@@@@         +@@@@@@@@+                   
@@ -48,6 +50,7 @@ https://twitter.com/dialogik
 
             // Remove twitch login button
             $('#twitch-connect').remove();
+            $('.button-chat').css('display', 'inline-block');
 
             // Initalize fetch API
             const fetch = new TwitchJs({ token });
@@ -64,14 +67,12 @@ https://twitter.com/dialogik
 
                     // Join channel
                     send.chat.join(channel).then(channelState => {
-
-                        // Click watcher
-                        $('p.command').css('cursor', 'pointer').click(function() {
-
-                            // Determine command and send to chat
-                            let text = $(this).text();
-                            console.log('Sending to chat [#' + channel + '] @' + username + ': ' + text);
-                            send.chat.say(channel, text);
+                        // Chat button click watcher
+                        $('.button-chat').click(function() {
+                            // Send command to chat
+                            let command = $(this).parent('td').parent('tr').data('command');
+                            console.log('Sending to chat [#' + channel + '] @' + username + ': ' + command);
+                            send.chat.say(channel, command);
                         });
                     });
                 });
