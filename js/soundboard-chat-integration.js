@@ -1,45 +1,4 @@
 $(function() {
-
-    // HORNHAUT.tv advertising
-    console.log(`                  
-                           .;@@      ;;,'                          
-                    @@@@@@@@@         +@@@@@@@@+                   
-                   +@@@@@@@#            @@@@@@@@                   
-             @+    ,@@@@@@@             ;@@@@@@@     @:            
-            @@@     @@@@@@@             '@@@@@@@    ;@@'           
-          '@@@@@    +@@@@@@              @@@@@@    ;@@@@@          
-          @@@@@@@    @@@@@@             ;@@@@@    @@@@@@@;         
-           @@@@@@@@   @@@@@,            @@@@@    @@@@@@@;          
-             @@@@@@@@   @@@@           @@@@#   @@@@@@@#            
-         @     @@@@@@@@ @@@@@         @@@@@ '@@@@@@@.    @         
-         @@@      :@@@@@@@@.            @@@@@@@@@      @@@@        
-         @@@@@        ;@@@+              @@@@        @@@@@,        
-          @@@@@@@@+    @@@        @  @@; +@@+   '@@@@@@@@@         
-           @@@@@@@@@@@@@@@        '@@@@  ,@@@@@@@@@@@@@@:          
-              @@@@@@@@@@@@      @@@@@@@@ #@@@@@@@@@@@#             
-                      .#@@@  @@@'   ;;  .@@@,                      
-                  @'    @@@@ @@@        @@@     ;;                 
-                     '@@@@@@@ @@@@    ;@@@@@@@                     
-                          ;@@@@@@@@@@@@@@                          
-                             :@@@@@@@@                             
-                              @@@@@@@                              
-                              @@@@@@@'                             
-                             @@      @                             
-                         @@#@         @'@@                         
-                          + @@        @                            
-
-Dies ist ein Projekt von HORNHAUT.tv und der Allianz der Geiervögel. Wir sind eine Initiative zur Förderung kleiner Streamer. Wenn dich derartige Projekte interessieren, dann solltest du unbedingt mal bei uns reinschauen!
-
-https://hornhaut.tv
-https://www.twitch.tv/HORNHAUTtv
-https://twitter.com/HORNHAUTtv
-https://twitter.com/geierallianz
-https://twitter.com/dialogik
-`);
-
-    const clientId = '1cq3tqmw523zn03v0egw7se8att5vm';
-    const channel  = 'bloodemi';
-
     // Check if user comes from twitch authentication
     if(window.location.hash !== '') {
         // Extract token
@@ -52,17 +11,17 @@ https://twitter.com/dialogik
             $('#twitch-connect').remove();
             $('.button-chat').css('display', 'inline-block');
 
-            // Initalize fetch API
-            const fetch = new TwitchJs({ token });
-            fetch.api.get('user').then(response => {
+            // Fetch username for full chat authability
+            const fetch = new window.TwitchJs({ token });
+            fetch.api.get('users').then(response => {
+                console.log(response.data[0]);
 
                 // Get authenticated user's username
-                let username = response.name;
-
-                // Initalize send API
-                const send = new TwitchJs({ token, username });
+                let username = response.data[0].displayName;
+                console.log(username);
 
                 // Connect to chat
+                const send = new window.TwitchJs({ username, token });
                 send.chat.connect().then(() => {
 
                     // Join channel

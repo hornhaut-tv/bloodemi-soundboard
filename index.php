@@ -33,9 +33,22 @@
 		<div class="site">
 			<img src="images/logo.png">
 
+<?php
+	// Twitch API Credentials
+	$client_id = '1cq3tqmw523zn03v0egw7se8att5vm';
+	$redirect_uri = 'https%3A%2F%2Fsounds.bloodemi.net%2F';
+?>
+
 			<!-- Twitch Login Button -->
 			<div id="twitch-connect">
-	        	<a href="https://id.twitch.tv/oauth2/authorize?client_id=1cq3tqmw523zn03v0egw7se8att5vm&redirect_uri=https%3A%2F%2Fsounds.bloodemi.net%2F&response_type=token&scope=user_read+chat:read+chat:edit"><img src="https://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
+	        	<a href="https://id.twitch.tv/oauth2/authorize?client_id=<?php echo $client_id; ?>&redirect_uri=<?php echo $redirect_uri; ?>&response_type=token&scope=user:read:email+chat:read+chat:edit"><img src="https://ttv-api.s3.amazonaws.com/assets/connect_dark.png" /></a>
+
+	        	<script type="text/javascript">
+	        		<!-- 
+	        			const clientId = <?php echo "'" . $client_id . "'"; ?>;
+	        			const channel  = 'Bloodemi';
+	        		// -->
+	        	</script>
 	        </div>
 	        <!-- Twitch Login Button (End) -->
 
@@ -54,17 +67,17 @@
 							{
 								if ($file != '.' && $file != '..')
 									{
-										$fileArr = explode(".", $file);
+										list($command, $ext) = explode(".", $file);
 										echo "<div class=\"soundItem\">
 												<table cellspacing=\"0\" cellpadding=\"0\" width=\"0\">
-													<tr data-command=\"!" . $fileArr[0] . "\">
+													<tr data-command=\"!" . $command . "\">
 														<td>
-															<p class=\"button-play\" onclick=\"playAudio('". $fileArr[0] .".". $fileArr[1] ."')\">
+															<p class=\"button-play\" onclick=\"playAudio('". $command .".". $ext ."')\">
 																<i class=\"fas fa-play\"></i>
 															</p>
 														</td>
 														<td width=\"90%\">
-															<p class=\"command\">!". $fileArr[0] ."</p>
+															<p class=\"command\">!". $command ."</p>
 														</td>
 														<td>
 															<p class=\"button-chat\">
@@ -77,6 +90,9 @@
 										$i++;
 									}
 							}
+
+
+
 						echo "<div class=\"clear\"></div>";
 							
 					 echo "<audio id=\"player\">
@@ -88,8 +104,43 @@
 		</div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-        <script src="//unpkg.com/twitch-js@>2.0.0-beta/dist/twitch-js.min.js"></script>
+        <script src="//unpkg.com/twitch-js@2.0.0-beta.33/dist/twitch.js"></script>
         <script src="js/soundboard-chat-integration.js"></script>
 		
+		<script type="text/javascript">
+// Allianz der Geiervoegel
+console.log(`                  
+                           .;@@      ;;,'                          
+                    @@@@@@@@@         +@@@@@@@@+                   
+                   +@@@@@@@#            @@@@@@@@                   
+             @+    ,@@@@@@@             ;@@@@@@@     @:            
+            @@@     @@@@@@@             '@@@@@@@    ;@@'           
+          '@@@@@    +@@@@@@              @@@@@@    ;@@@@@          
+          @@@@@@@    @@@@@@             ;@@@@@    @@@@@@@;         
+           @@@@@@@@   @@@@@,            @@@@@    @@@@@@@;          
+             @@@@@@@@   @@@@           @@@@#   @@@@@@@#            
+         @     @@@@@@@@ @@@@@         @@@@@ '@@@@@@@.    @         
+         @@@      :@@@@@@@@.            @@@@@@@@@      @@@@        
+         @@@@@        ;@@@+              @@@@        @@@@@,        
+          @@@@@@@@+    @@@        @  @@; +@@+   '@@@@@@@@@         
+           @@@@@@@@@@@@@@@        '@@@@  ,@@@@@@@@@@@@@@:          
+              @@@@@@@@@@@@      @@@@@@@@ #@@@@@@@@@@@#             
+                      .#@@@  @@@'   ;;  .@@@,                      
+                  @'    @@@@ @@@        @@@     ;;                 
+                     '@@@@@@@ @@@@    ;@@@@@@@                     
+                          ;@@@@@@@@@@@@@@                          
+                             :@@@@@@@@                             
+                              @@@@@@@                              
+                              @@@@@@@'                             
+                             @@      @                             
+                         @@#@         @'@@                         
+                          + @@        @                            
+
+Dies ist ein Projekt von HORNHAUT.tv und der Allianz der Geiervögel. Wir sind eine Initiative zur Förderung kleiner Streamer. Wenn dich derartige Projekte interessieren, dann solltest du unbedingt mal bei uns reinschauen!
+
+https://www.reddit.com/r/AllianzDerGeiervoegel
+https://twitter.com/geierallianz
+`);
+		</script>
 	</body>
 </html>
