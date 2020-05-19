@@ -11,8 +11,9 @@ $(function() {
             $('#twitch-connect').remove();
             $('.button-chat').css('display', 'inline-block');
 
+            
             // Fetch username for full chat authability
-            const fetch = new window.TwitchJs({ token });
+            const fetch = new window.TwitchJs({ token, clientId });
             fetch.api.get('users').then(response => {
                 console.log(response.data[0]);
 
